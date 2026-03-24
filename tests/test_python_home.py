@@ -5,7 +5,7 @@ from pages.python_home_page import PythonHomePage
 
 @pytest.fixture
 def driver():
-    service = Service("C:/tools/chromedriver-win64/chromedriver.exe")
+    service = Service("C:/tools/chromedriver-win64/chromedriver.exe")  # твой путь к драйверу
     driver = webdriver.Chrome(service=service)
     driver.maximize_window()
     yield driver
@@ -15,7 +15,4 @@ def test_search_python_org(driver):
     page = PythonHomePage(driver)
     page.open()
     page.search("pytest")
-    # Старая строка удаляется:
-    # assert "Search Python" in driver.title or "Results" in driver.title
-    # Вместо неё:
-    assert "Python" in driver.title  # <- проверяем, что в title есть Python
+    assert "Python" in driver.title  # стабильная проверка заголовка
